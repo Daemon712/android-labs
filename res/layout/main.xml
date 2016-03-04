@@ -84,6 +84,7 @@
                                 android:textSize="16pt"/>
                         <Button
                                 android:text="С"
+                                android:onClick="onClickClear"
                                 android:id="@+id/buttonClear"
                                 android:textSize="16pt"/>
                         <Button
