@@ -105,6 +105,7 @@
                                 android:textSize="16pt"/>
                         <Button
                                 android:text="+/-"
+                                android:onClick="onClickSign"
                                 android:id="@+id/buttonSign"
                                 android:textSize="16pt"/>
                         <Button

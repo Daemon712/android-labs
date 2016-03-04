@@ -44,12 +44,24 @@ public class MyActivity extends Activity {
     public void onClickSqrt(View view){
         if (displayNumber == null || displayNumber <= 0) return;
         displayNumber = Math.sqrt(displayNumber);
-        textView.setText(displayNumber.toString());
+        textView.setText(doubleToString(displayNumber));
     }
 
     public void onClick1DivX(View view){
         if (displayNumber == null || displayNumber == 0) return;
         displayNumber = 1/displayNumber;
-        textView.setText(displayNumber.toString());
+        textView.setText(doubleToString(displayNumber));
+    }
+
+    public void onClickSign(View view){
+        if (displayNumber == null) return;
+        displayNumber = -displayNumber;
+        textView.setText(doubleToString(displayNumber));
+    }
+
+    private static String doubleToString(Double number){
+        return number.longValue() == number ?
+                Long.toString(number.longValue()) :
+                number.toString();
     }
 }
