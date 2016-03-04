@@ -40,4 +40,10 @@ public class MyActivity extends Activity {
         operation = null;
         textView.setText("0");
     }
+
+    public void onClickSqrt(View view){
+        if (displayNumber == null) return;
+        displayNumber = Math.sqrt(displayNumber);
+        textView.setText(displayNumber.toString());
+    }
 }

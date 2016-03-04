@@ -95,6 +95,7 @@
                 <TableRow>
                         <Button
                                 android:text="&#8730;"
+                                android:onClick="onClickSqrt"
                                 android:id="@+id/buttonSqrt"
                                 android:textSize="16pt"/>
                         <Button
