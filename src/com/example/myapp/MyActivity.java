@@ -42,8 +42,14 @@ public class MyActivity extends Activity {
     }
 
     public void onClickSqrt(View view){
-        if (displayNumber == null) return;
+        if (displayNumber == null || displayNumber <= 0) return;
         displayNumber = Math.sqrt(displayNumber);
+        textView.setText(displayNumber.toString());
+    }
+
+    public void onClick1DivX(View view){
+        if (displayNumber == null || displayNumber == 0) return;
+        displayNumber = 1/displayNumber;
         textView.setText(displayNumber.toString());
     }
 }
