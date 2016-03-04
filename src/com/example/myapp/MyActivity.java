@@ -3,9 +3,7 @@ package com.example.myapp;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MyActivity extends Activity {
     private TextView textView;
@@ -22,5 +20,12 @@ public class MyActivity extends Activity {
         String oldText = textView.getText().toString();
         String newText = oldText.equals("0") ? input : oldText + input;
         textView.setText(newText);
+    }
+
+    public void onClickSeparator(View view){
+        String oldText = textView.getText().toString();
+        if (!oldText.contains(".")){
+            textView.setText(oldText + ".");
+        }
     }
 }

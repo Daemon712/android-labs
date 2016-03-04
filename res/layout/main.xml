@@ -73,7 +73,8 @@
                 </TableRow>
                 <TableRow>
                         <Button
-                                android:text=","
+                                android:text="."
+                                android:onClick="onClickSeparator"
                                 android:id="@+id/buttonSeparator"
                                 android:textSize="16pt"/>
                         <Button
