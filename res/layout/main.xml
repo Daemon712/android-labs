@@ -119,13 +119,24 @@
                                 android:onClick="onClickCalc"/>
                 </TableRow>
         </TableLayout>
+        <TextView
+                android:layout_alignParentTop="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_margin="16dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textViewAdditional"/>
         <EditText android:layout_above="@id/table"
+                  android:layout_below="@id/textViewAdditional"
                   android:layout_width="fill_parent"
                   android:layout_height="match_parent"
                   android:text="0"
                   android:inputType="number"
                   android:focusable="false"
-                  android:gravity="right|bottom"
-                  android:textSize="28pt"
-                  android:id="@+id/textView"/>
+                  android:gravity="right|center_vertical"
+                  android:textSize="32pt"
+                  android:padding="16dp"
+                  android:id="@+id/textViewMain"/>
+
 </RelativeLayout>
