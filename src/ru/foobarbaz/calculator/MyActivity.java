@@ -123,13 +123,18 @@ public class MyActivity extends Activity {
     }
 
     private void setOperation(Operation operation, String operator){
+        if (displayNumber != null){
+            if (this.operation != null){
+                memoryNumber = this.operation.calculate(memoryNumber, displayNumber);
+            } else {
+                memoryNumber = displayNumber;
+            }
+
+            displayNumber = null;
+            textViewMain.setText("0");
+            textViewAdditional.setText(doubleToString(memoryNumber) + "  " + operator);
+        }
         this.operation = operation;
-        if (displayNumber == null) return;
-        if (memoryNumber == null) memoryNumber = 0d;
-        memoryNumber = displayNumber;
-        displayNumber = null;
-        textViewMain.setText("0");
-        textViewAdditional.setText(doubleToString(memoryNumber) + "  " + operator);
     }
 
     public interface Operation {
