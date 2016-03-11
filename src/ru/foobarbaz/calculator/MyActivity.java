@@ -113,6 +113,7 @@ public class MyActivity extends Activity {
         displayNumber = operation.calculate(memoryNumber, displayNumber);
         textViewMain.setText(doubleToString(displayNumber));
         memoryNumber = null;
+        operation = null;
         textViewAdditional.setText("");
     }
 
