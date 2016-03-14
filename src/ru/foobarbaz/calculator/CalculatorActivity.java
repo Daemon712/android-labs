@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import ru.foobarbaz.R;
 
-public class MyActivity extends Activity {
+public class CalculatorActivity extends Activity {
     private TextView textViewMain;
     private TextView textViewAdditional;
     private Double displayNumber;
@@ -16,7 +17,7 @@ public class MyActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.calculator);
         textViewMain = (TextView) findViewById(R.id.textViewMain);
         textViewAdditional = (TextView) findViewById(R.id.textViewAdditional);
     }
