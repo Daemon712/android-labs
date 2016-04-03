@@ -8,12 +8,12 @@
               android:padding="30dp">
         <Button android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24pt"
+                android:textSize="18pt"
                 android:onClick="openCalculator"
                 android:text="Калькулятор"/>
         <Button android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24pt"
+                android:textSize="18pt"
                 android:onClick="openConverter"
                 android:text="Конвертер"/>
 </LinearLayout>

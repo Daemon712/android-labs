@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lang_label">Language</string>
+    <string name="measure_label">Measurement</string>
+    <string name="meter">Meter</string>
+    <string name="kilometer">Kilometer</string>
+    <string name="centimeter">Centimeter</string>
+    <string name="foot">Foot</string>
+    <string name="mile">Mile</string>
+    <string name="inch">Inch</string>
+    <string name="overflow">Overflow</string>
+</resources>

@@ -13,6 +13,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".calculator.CalculatorActivity" android:label="Калькулятор"/>
-        <activity android:name=".converter.ConverterActivity" android:label="Конвертер"/>
+        <activity android:name=".converter.ConverterActivity" android:label="@string/converter_label"/>
     </application>
 </manifest>
