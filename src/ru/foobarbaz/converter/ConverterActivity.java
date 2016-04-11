@@ -1,6 +1,7 @@
 package ru.foobarbaz.converter;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -57,10 +58,10 @@ public class ConverterActivity extends Activity implements TextWatcher {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
                 Locale locale = LOCALES[selectedItemPosition];
-                if (locale.equals(Locale.getDefault())) return;
-                Locale.setDefault(locale);
-                getResources().getConfiguration().locale = locale;
-                getResources().updateConfiguration(getResources().getConfiguration(), getResources().getDisplayMetrics());
+                Configuration config = getResources().getConfiguration();
+                if (locale.equals(config.locale)) return;
+                config.locale = locale;
+                getResources().updateConfiguration(config, null);
                 recreate();
             }
             public void onNothingSelected(AdapterView<?> parent) { }
