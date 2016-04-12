@@ -1,98 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
+              android:orientation="vertical"
               android:screenOrientation="portrait">
 
-    <TableRow>
-        <TextView android:text="@string/lang_label"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="1"/>
-        <Spinner android:id="@+id/langSpinner"
-                 android:layout_width="match_parent"
-                 android:layout_weight="2"
-                 android:layout_gravity="center"/>
-    </TableRow>
+    <TextView android:text="@string/lang_label"
+              android:textSize="24sp"
+              android:layout_margin="5dp"
+              android:layout_height="wrap_content"
+              android:layout_width="wrap_content"/>
+    <Spinner android:id="@+id/langSpinner"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"/>
 
-    <TableRow>
-        <TextView android:text="@string/measure_label"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="1"/>
-        <Spinner android:id="@+id/measureSpinner"
-                 android:layout_width="match_parent"
-                 android:layout_weight="2"
-                 android:layout_gravity="center"/>
-    </TableRow>
+    <EditText android:id="@+id/editNumber"
+              android:inputType="numberDecimal"
+              android:gravity="right"
+              android:layout_marginTop="15dp"
+              android:layout_marginBottom="15dp"
+              android:textSize="54sp"
+              android:maxLength="10"
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"/>
 
-    <TableRow>
-        <EditText android:id="@+id/editNumber"
-                  style="@android:style/TextAppearance.Large"
-                  android:inputType="numberDecimal"
-                  android:layout_gravity="center"
-                  android:gravity="right"
-                  android:layout_weight="1"
-                  android:layout_margin="15dp"
-                  android:textSize="40sp"
-                  android:maxLength="10"/>
-    </TableRow>
-
-    <TableRow>
-        <TextView android:id="@+id/meter"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="5"
-                  android:text="0"/>
-        <TextView style="@style/labelLeftAlign"
-                  android:layout_weight="2"
-                  android:text="@string/meter"/>
-    </TableRow>
-
-    <TableRow>
-        <TextView android:id="@+id/kilometer"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="5"
-                  android:text="0"/>
-        <TextView style="@style/labelLeftAlign"
-                  android:layout_weight="2"
-                  android:text="@string/kilometer"/>
-    </TableRow>
-
-    <TableRow>
-        <TextView android:id="@+id/centimeter"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="5"
-                  android:text="0"/>
-        <TextView style="@style/labelLeftAlign"
-                  android:layout_weight="2"
-                  android:text="@string/centimeter"/>
-    </TableRow>
-
-    <TableRow>
-        <TextView android:id="@+id/foot"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="5"
-                  android:text="0"/>
-        <TextView style="@style/labelLeftAlign"
-                  android:layout_weight="2"
-                  android:text="@string/foot"/>
-    </TableRow>
-
-    <TableRow>
-        <TextView android:id="@+id/mile"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="5"
-                  android:text="0"/>
-        <TextView style="@style/labelLeftAlign"
-                  android:layout_weight="2"
-                  android:text="@string/mile"/>
-    </TableRow>
-
-    <TableRow>
-        <TextView android:id="@+id/inch"
-                  style="@style/labelRightAlign"
-                  android:layout_weight="5"
-                  android:text="0"/>
-        <TextView style="@style/labelLeftAlign"
-                  android:layout_weight="2"
-                  android:text="@string/inch"/>
-    </TableRow>
-</TableLayout>
+    <RadioGroup android:id="@+id/radioGroup"
+                android:layout_height="match_parent"
+                android:layout_width="fill_parent">
+    </RadioGroup>
+</LinearLayout>

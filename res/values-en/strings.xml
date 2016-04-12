@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">My Application</string>
+    <string name="converter_label">Converter</string>
     <string name="lang_label">Language</string>
-    <string name="measure_label">Measurement</string>
     <string name="meter">Meter</string>
     <string name="kilometer">Kilometer</string>
     <string name="centimeter">Centimeter</string>

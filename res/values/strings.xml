@@ -7,20 +7,11 @@
         <item>English</item>
         <item>Русский</item>
     </string-array>
-    <string name="measure_label">Measurement</string>
     <string name="meter">Meter</string>
     <string name="kilometer">Kilometer</string>
     <string name="centimeter">Centimeter</string>
     <string name="foot">Foot</string>
     <string name="mile">Mile</string>
     <string name="inch">Inch</string>
-    <string-array name="measure_list">
-        <item>@string/meter</item>
-        <item>@string/kilometer</item>
-        <item>@string/centimeter</item>
-        <item>@string/foot</item>
-        <item>@string/mile</item>
-        <item>@string/inch</item>
-    </string-array>
     <string name="overflow">Overflow</string>
 </resources>
