@@ -2,32 +2,63 @@ package ru.foobarbaz.converter;
 
 import android.app.Activity;
 import android.content.res.Configuration;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import ru.foobarbaz.R;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 public class ConverterActivity extends Activity implements TextWatcher {
-    private static final Locale[] LOCALES = {Locale.ENGLISH, new Locale("ru","RU")};
+    private static final Map<Locale,Integer> LOCALES;
     private UnitOfMeasure selectedMeasure;
     private Map<UnitOfMeasure, TextView> measureViews = new HashMap<>();
     private double input;
+
+    static {
+        Map<Locale, Integer> temp = new HashMap<>();
+        temp.put(Locale.ENGLISH, R.string.eng);
+        temp.put(new Locale("ru", "RU"), R.string.rus);
+        LOCALES = Collections.unmodifiableMap(temp);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.converter);
 
-        initLangSpinner();
         initEditNumber();
         initMeasures();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        for (Map.Entry<Locale, Integer> item : LOCALES.entrySet()){
+
+            MenuItem menuItem = menu.add(item.getValue());
+            menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Configuration config = getResources().getConfiguration();
+                    if (item.getKey().equals(config.locale)) return true;
+                    config.locale = item.getKey();
+                    getResources().updateConfiguration(config, null);
+                    recreate();
+                    return true;
+                }
+            });
+        }
+        return true;
     }
 
     private void initMeasures() {
@@ -52,27 +83,7 @@ public class ConverterActivity extends Activity implements TextWatcher {
 
     private String generateText(UnitOfMeasure unit, double value){
         String name = getResources().getString(unit.getNameId());
-        return String.format(" %-10s%20.2f", name, value);
-    }
-
-    private void initLangSpinner() {
-        Spinner spinner = (Spinner) findViewById(R.id.langSpinner);
-        spinner.setPrompt(getString(R.string.lang_label));
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.lang_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
-                Locale locale = LOCALES[selectedItemPosition];
-                Configuration config = getResources().getConfiguration();
-                if (locale.equals(config.locale)) return;
-                config.locale = locale;
-                getResources().updateConfiguration(config, null);
-                recreate();
-            }
-            public void onNothingSelected(AdapterView<?> parent) { }
-        });
+        return name + "\n" + value;
     }
 
     private RadioButton createRadioButton(UnitOfMeasure measure){
@@ -85,8 +96,7 @@ public class ConverterActivity extends Activity implements TextWatcher {
             }
         });
 
-        radioButton.setTextSize(30);
-        radioButton.setTypeface(Typeface.MONOSPACE);
+        radioButton.setTextSize(24);
         radioButton.setText(generateText(measure, 0f));
         measureViews.put(measure, radioButton);
         return radioButton;

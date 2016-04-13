@@ -2,12 +2,10 @@
 <resources>
     <string name="app_name">Моё приложение</string>
     <string name="converter_label">Конвертер</string>
-    <string name="lang_label">Язык</string>
     <string name="meter">Метр</string>
     <string name="kilometer">Километр</string>
     <string name="centimeter">Сантиметр</string>
     <string name="foot">Фут</string>
     <string name="mile">Миля</string>
     <string name="inch">Дюйм</string>
-    <string name="overflow">Это уже перебор</string>
 </resources>

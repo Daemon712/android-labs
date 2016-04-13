@@ -2,12 +2,10 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="converter_label">Converter</string>
-    <string name="lang_label">Language</string>
     <string name="meter">Meter</string>
     <string name="kilometer">Kilometer</string>
     <string name="centimeter">Centimeter</string>
     <string name="foot">Foot</string>
     <string name="mile">Mile</string>
     <string name="inch">Inch</string>
-    <string name="overflow">Overflow</string>
 </resources>
