@@ -53,7 +53,8 @@ public class ConverterActivity extends Activity implements TextWatcher {
                     if (item.getKey().equals(config.locale)) return true;
                     config.locale = item.getKey();
                     getResources().updateConfiguration(config, null);
-                    recreate();
+                    update();
+                    setTitle(R.string.converter_label);
                     return true;
                 }
             });
