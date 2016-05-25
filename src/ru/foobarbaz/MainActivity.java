@@ -3,10 +3,10 @@ package ru.foobarbaz;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import ru.foobarbaz.calculator.CalculatorActivity;
 import ru.foobarbaz.converter.ConverterActivity;
+import ru.foobarbaz.notebook.activity.NoteBookMainActivity;
 
 public class MainActivity extends Activity{
 
@@ -23,6 +23,11 @@ public class MainActivity extends Activity{
 
     public void openConverter(View view) {
         Intent intent = new Intent(this, ConverterActivity.class);
+        startActivity(intent);
+    }
+
+    public void openNoteBook(View view) {
+        Intent intent = new Intent(this, NoteBookMainActivity.class);
         startActivity(intent);
     }
 }

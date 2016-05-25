@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="ru.foobarbaz.notebook.activity.NoteBookMainActivity">
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Создать Заметку"
+            android:id="@+id/newNote"
+            android:layout_below="@+id/showNotesButton"
+            android:layout_alignParentStart="true"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Заметки"
+            android:id="@+id/showNotesButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/newNote"/>
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/scrollView"
+            android:fillViewport="false"
+            android:layout_below="@+id/newNote"
+            android:layout_alignParentStart="true">
+    </ScrollView>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Теги"
+            android:id="@+id/showTagsButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/scrollView"
+            android:layout_alignStart="@+id/newTag"/>
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить Тег"
+            android:id="@+id/newTag"
+            android:layout_below="@+id/showTagsButton"
+            android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
