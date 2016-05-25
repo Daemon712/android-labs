@@ -66,13 +66,7 @@ public class TagActivity extends Activity implements View.OnClickListener {
     }
 
     private void cancel() {
-        startMainActivity();
-    }
-
-    private void startMainActivity() {
-        Intent intent = new Intent(this, NoteBookMainActivity.class);
-        intent.putExtra("pageToShow", "tags");
-        startActivity(intent);
+        finish();
     }
 
     private void save() {
@@ -86,7 +80,7 @@ public class TagActivity extends Activity implements View.OnClickListener {
             tagToSave.setId(currentTag.getId());
             HelperFactory.getHelper().getTagDao().update(tagToSave);
         }
-        startMainActivity();
+        finish();
     }
 
     private boolean emptyRequiredFields() {
@@ -106,6 +100,6 @@ public class TagActivity extends Activity implements View.OnClickListener {
         Tag tagToDelete = new Tag();
         tagToDelete.setId(currentTag.getId());
         HelperFactory.getHelper().getTagDao().delete(tagToDelete);
-        startMainActivity();
+        finish();
     }
 }

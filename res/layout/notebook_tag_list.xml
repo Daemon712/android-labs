@@ -3,29 +3,20 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".notebook.activity.NoteListActivity">
+                tools:context=".notebook.activity.TagListActivity">
 
-    <Button
-            android:layout_width="wrap_content"
+    <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Создать Заметку"
-            android:id="@+id/newNote"
+            android:text="Добавить Тег"
+            android:id="@+id/newTag"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Теги"
-            android:id="@+id/showTagsButton"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"/>
 
     <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/scrollView"
             android:fillViewport="false"
-            android:layout_below="@id/newNote"/>
+            android:layout_below="@id/newTag"/>
 
 </RelativeLayout>

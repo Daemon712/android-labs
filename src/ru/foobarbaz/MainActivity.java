@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import ru.foobarbaz.calculator.CalculatorActivity;
 import ru.foobarbaz.converter.ConverterActivity;
-import ru.foobarbaz.notebook.activity.NoteBookMainActivity;
+import ru.foobarbaz.notebook.activity.NoteListActivity;
 
 public class MainActivity extends Activity{
 
@@ -27,7 +27,7 @@ public class MainActivity extends Activity{
     }
 
     public void openNoteBook(View view) {
-        Intent intent = new Intent(this, NoteBookMainActivity.class);
+        Intent intent = new Intent(this, NoteListActivity.class);
         startActivity(intent);
     }
 }

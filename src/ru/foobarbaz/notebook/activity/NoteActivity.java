@@ -93,13 +93,7 @@ public class NoteActivity extends Activity implements View.OnClickListener {
     }
 
     private void cancel() {
-        startMainActivity();
-    }
-
-    private void startMainActivity() {
-        Intent intent = new Intent(this, NoteBookMainActivity.class);
-        intent.putExtra("pageToShow", "notes");
-        startActivity(intent);
+        finish();
     }
 
     private void save() {
@@ -118,7 +112,7 @@ public class NoteActivity extends Activity implements View.OnClickListener {
             HelperFactory.getHelper().getNoteTagDao().deleteTagsForNote(currentNote);
             createNoteTags(currentNote);
         }
-        startMainActivity();
+        finish();
     }
 
     private boolean emptyRequiredFields() {
@@ -160,6 +154,6 @@ public class NoteActivity extends Activity implements View.OnClickListener {
         Note noteToDelete = new Note();
         noteToDelete.setId(currentNote.getId());
         HelperFactory.getHelper().getNoteDao().delete(noteToDelete);
-        startMainActivity();
+        finish();
     }
 }

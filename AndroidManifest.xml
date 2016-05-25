@@ -15,8 +15,9 @@
         <activity android:name=".calculator.CalculatorActivity" android:label="Калькулятор"/>
         <activity android:name=".converter.ConverterActivity" android:label="@string/converter_label"/>
 
-        <activity android:name=".notebook.activity.NoteBookMainActivity" android:label="Записная книжка"/>
+        <activity android:name=".notebook.activity.NoteListActivity" android:label="Записная книжка"/>
         <activity android:name=".notebook.activity.NoteActivity" android:label="Заметка"/>
+        <activity android:name=".notebook.activity.TagListActivity" android:label="Список тегов"/>
         <activity android:name=".notebook.activity.TagActivity" android:label="Тег"/>
     </application>
 </manifest>
