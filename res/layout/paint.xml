@@ -22,7 +22,7 @@
                 android:id="@+id/dragButton"/>
         <Button android:text="Line" android:layout_weight="1"
                 android:id="@+id/lineButton"/>
-        <Button android:text="Rectangle" android:layout_weight="1"
+        <Button android:text="Rect" android:layout_weight="1"
                 android:id="@+id/rectangleButton"/>
         <Button android:text="Circle" android:layout_weight="1"
                 android:id="@+id/circleButton"/>

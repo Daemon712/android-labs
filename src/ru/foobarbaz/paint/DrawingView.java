@@ -65,7 +65,6 @@ public class DrawingView extends View {
                 break;
         }
         repaint();
-        invalidate();
         return true;
     }
 
@@ -74,6 +73,7 @@ public class DrawingView extends View {
         for (Shape shape : shapes) {
             shape.draw(canvas);
         }
+        invalidate();
     }
 
     public void setShapeType(ShapeType shapeType) {
