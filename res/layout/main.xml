@@ -25,5 +25,5 @@
                 android:layout_height="wrap_content"
                 android:textSize="18pt"
                 android:onClick="openPaint"
-                android:text="Графический редактор"/>
+                android:text="Графический Редактор"/>
 </LinearLayout>
