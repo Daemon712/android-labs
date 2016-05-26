@@ -1,10 +1,7 @@
 package ru.foobarbaz.paint;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.*;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,18 +10,16 @@ import ru.foobarbaz.paint.shape.Line;
 import ru.foobarbaz.paint.shape.Rectangle;
 import ru.foobarbaz.paint.shape.Shape;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class DrawingView extends View {
-
-    private float startX;
-    private float startY;
     private Bitmap bitmap;
     private Canvas canvas;
     private Paint paint = new Paint(Paint.DITHER_FLAG);
     private List<Shape> shapes = new ArrayList<>();
-    private Shape selectedShape;
     private ShapeType currentShapeType = ShapeType.LINE;
+    private Mode currentMode = Mode.DRAW;
 
     public DrawingView(Context context) {
         super(context);
@@ -50,6 +45,7 @@ public class DrawingView extends View {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         paint.setStyle(Paint.Style.STROKE);
+        repaint();
     }
 
     @Override
@@ -59,64 +55,18 @@ public class DrawingView extends View {
         float y = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                fingerDown(x, y);
+                currentMode.fingerDown(this, x, y);
                 break;
             case MotionEvent.ACTION_MOVE:
-                fingerMove(x, y);
+                currentMode.fingerMove(this, x, y);
                 break;
             case MotionEvent.ACTION_UP:
-                fingerUp(x, y);
+                currentMode.fingerUp(this, x, y);
                 break;
         }
-        return true;
-    }
-
-    private void fingerDown(float x, float y) {
-        startX = x;
-        startY = y;
-        if (currentShapeType == ShapeType.NO) {
-            for (int i = shapes.size() - 1; i >= 0; i--) {
-                if (shapes.get(i).isHit(x, y)) {
-                    Shape tempShape = shapes.get(i);
-                    shapes.set(i, shapes.get(shapes.size() - 1));
-                    shapes.set(shapes.size() - 1, tempShape);
-                    break;
-                }
-            }
-        }
-        invalidate();
-    }
-
-    private void fingerMove(float x, float y) {
         repaint();
-        if (currentShapeType == ShapeType.NO) {
-            moveShape(x, y);
-        } else {
-           drawShape(x, y);
-        }
         invalidate();
-    }
-
-    private void moveShape(float x, float y) {
-        for (int i = shapes.size() - 1; i >= 0; i--) {
-            if (shapes.get(i).isHit(x, y)) {
-                Shape tempShape = shapes.get(i);
-                shapes.set(i, shapes.get(shapes.size() - 1));
-                shapes.set(shapes.size() - 1, tempShape);
-                selectedShape = tempShape;
-                break;
-            }
-        }
-        selectedShape.changePosition(x, y);
-    }
-
-    private void drawShape(float x, float y) {
-        Shape shape = getShape(x, y);
-        Paint paintToShape = new Paint();
-        paintToShape.setColor(paint.getColor());
-        paintToShape.setStrokeWidth(paint.getStrokeWidth());
-        paintToShape.setStyle(Paint.Style.STROKE);
-        shape.draw(canvas);
+        return true;
     }
 
     private void repaint() {
@@ -126,38 +76,7 @@ public class DrawingView extends View {
         }
     }
 
-    private void fingerUp(float x, float y) {
-        if (currentShapeType == ShapeType.NO) {
-            return;
-        }
-        shapes.add(getShape(x, y));
-        invalidate();
-    }
-
-    private Shape getShape(float finishX, float finishY) {
-        Shape result;
-        switch (currentShapeType) {
-            case LINE:
-                result = new Line();
-                break;
-            case RECTANGLE:
-                result = new Rectangle();
-                break;
-            case CIRCLE:
-                result = new Circle();
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown shape.");
-        }
-        result.setStartX(startX);
-        result.setStartY(startY);
-        result.setEndX(finishX);
-        result.setEndY(finishY);
-        result.setPaint(paint);
-        return result;
-    }
-
-    public void setMode(ShapeType shapeType) {
+    public void setShapeType(ShapeType shapeType) {
         currentShapeType = shapeType;
     }
 
@@ -166,11 +85,8 @@ public class DrawingView extends View {
         repaint();
     }
 
-    public void removeLast() {
-        if (!shapes.isEmpty()) {
-            shapes.remove(shapes.size() - 1);
-            repaint();
-        }
+    public void setMode(Mode mode) {
+        this.currentMode = mode;
     }
 
     public void setColor(int color) {
@@ -179,5 +95,99 @@ public class DrawingView extends View {
 
     public void setWidth(float width) {
         paint.setStrokeWidth(width);
+    }
+
+    public enum Mode {
+        DRAW {
+            private Shape shape;
+
+            @Override
+            void fingerDown(DrawingView drawingView, float x, float y) {
+                shape = drawingView.currentShapeType.createShape();
+                drawingView.shapes.add(shape);
+                shape.setStartX(x);
+                shape.setEndX(x);
+                shape.setStartY(y);
+                shape.setEndY(y);
+                shape.setPaint(drawingView.paint);
+            }
+
+            @Override
+            void fingerMove(DrawingView drawingView, float x, float y) {
+                if (shape != null){
+                    shape.setEndY(y);
+                    shape.setEndX(x);
+                }
+            }
+
+            @Override
+            void fingerUp(DrawingView drawingView, float x, float y) {
+                shape = null;
+            }
+
+        },
+        MOVE {
+            private Shape selectedShape;
+
+            @Override
+            void fingerDown(DrawingView drawingView, float x, float y) {
+                for (Shape shape : drawingView.shapes) {
+                    if (shape.isHit(x, y)) {
+                        selectedShape = shape;
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            void fingerMove(DrawingView drawingView, float x, float y) {
+                if (selectedShape != null) {
+                    selectedShape.changePosition(x, y);
+                }
+            }
+
+            @Override
+            void fingerUp(DrawingView drawingView, float x, float y) {
+                selectedShape = null;
+            }
+
+        },
+        DELETE {
+            @Override
+            void fingerDown(DrawingView drawingView, float x, float y) {
+                for (Iterator<Shape> it = drawingView.shapes.iterator(); it.hasNext(); ) {
+                    if (it.next().isHit(x, y)){
+                        it.remove();
+                        return;
+                    }
+                }
+
+            }
+        };
+
+        void fingerDown(DrawingView drawingView, float x, float y) { }
+        void fingerMove(DrawingView drawingView, float x, float y) { }
+        void fingerUp(DrawingView drawingView, float x, float y) { }
+    }
+
+    public enum ShapeType {
+        LINE {
+            @Override
+            Shape createShape() {
+                return new Line();
+            }
+        }, RECTANGLE {
+            @Override
+            Shape createShape() {
+                return new Rectangle();
+            }
+        }, CIRCLE {
+            @Override
+            Shape createShape() {
+                return new Circle();
+            }
+        };
+
+        abstract Shape createShape();
     }
 }

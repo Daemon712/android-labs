@@ -18,7 +18,7 @@
     <ru.foobarbaz.paint.DrawingView android:id="@+id/drawingView" android:layout_weight="1"/>
 
     <TableRow>
-        <Button android:text="Drag" android:layout_weight="1"
+        <Button android:text="Move" android:layout_weight="1"
                 android:id="@+id/dragButton"/>
         <Button android:text="Line" android:layout_weight="1"
                 android:id="@+id/lineButton"/>

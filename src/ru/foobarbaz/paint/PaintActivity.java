@@ -103,22 +103,25 @@ public class PaintActivity extends Activity implements View.OnClickListener {
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
             case R.id.lineButton:
-                drawingView.setMode(ShapeType.LINE);
+                drawingView.setMode(DrawingView.Mode.DRAW);
+                drawingView.setShapeType(DrawingView.ShapeType.LINE);
                 break;
             case R.id.rectangleButton:
-                drawingView.setMode(ShapeType.RECTANGLE);
+                drawingView.setMode(DrawingView.Mode.DRAW);
+                drawingView.setShapeType(DrawingView.ShapeType.RECTANGLE);
                 break;
             case R.id.circleButton:
-                drawingView.setMode(ShapeType.CIRCLE);
+                drawingView.setMode(DrawingView.Mode.DRAW);
+                drawingView.setShapeType(DrawingView.ShapeType.CIRCLE);
                 break;
             case R.id.dragButton:
-                drawingView.setMode(ShapeType.NO);
+                drawingView.setMode(DrawingView.Mode.MOVE);
                 break;
             case R.id.cleanButton:
                 drawingView.clean();
                 break;
             case R.id.removeLastButton:
-                drawingView.removeLast();
+                drawingView.setMode(DrawingView.Mode.DELETE);
                 break;
         }
     }
