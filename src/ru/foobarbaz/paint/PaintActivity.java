@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import ru.foobarbaz.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,12 +70,16 @@ public class PaintActivity extends Activity implements View.OnClickListener {
     }
 
     private void createSpinner() {
-        List<String> colors = new ArrayList<>();
-        colors.add("Red");
-        colors.add("Green");
-        colors.add("Blue");
-        colors.add("Black");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
+        List<NamedColor> colors = Arrays.asList(
+                new NamedColor("Red", Color.RED),
+                new NamedColor("Yellow", Color.YELLOW),
+                new NamedColor("Green", Color.GREEN),
+                new NamedColor("Cyan", Color.CYAN),
+                new NamedColor("Blue", Color.BLUE),
+                new NamedColor("Magenta", Color.MAGENTA),
+                new NamedColor("Black", Color.BLACK)
+        );
+        ArrayAdapter<NamedColor> dataAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 colors
@@ -84,26 +90,12 @@ public class PaintActivity extends Activity implements View.OnClickListener {
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        drawingView.setColor(Color.RED);
-                        break;
-                    case 1:
-                        drawingView.setColor(Color.GREEN);
-                        break;
-                    case 2:
-                        drawingView.setColor(Color.BLUE);
-                        break;
-                    case 3:
-                        drawingView.setColor(Color.BLACK);
-                        break;
-                }
+                NamedColor selectedColor = (NamedColor) colorSpinner.getSelectedItem();
+                drawingView.setColor(selectedColor.color);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 
@@ -128,6 +120,21 @@ public class PaintActivity extends Activity implements View.OnClickListener {
             case R.id.removeLastButton:
                 drawingView.removeLast();
                 break;
+        }
+    }
+
+    private static class NamedColor{
+        String name;
+        int color;
+
+        public NamedColor(String name, int color) {
+            this.name = name;
+            this.color = color;
+        }
+
+        @Override
+        public String toString() {
+            return name;
         }
     }
 }
