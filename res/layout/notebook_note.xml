@@ -22,9 +22,9 @@
                 android:id="@+id/cancelNoteButton"/>
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_margin="10dp">
         <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            style="@android:style/TextAppearance.Large"
             android:text="Дата"
             android:layout_weight="1"
             android:id="@+id/dateTextView"/>
@@ -37,35 +37,33 @@
                 android:enabled="false"/>
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_margin="10dp">
         <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            style="@android:style/TextAppearance.Large"
             android:text="Заголовок"
             android:layout_weight="1"
             android:id="@+id/titleTextView"/>
 
         <EditText
-                android:ems="10"
                 android:id="@+id/noteTitle"
-                android:focusable="true"
                 android:layout_weight="1"
                 android:layout_span="2"
                 android:inputType="text"/>
     </TableRow>
 
     <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            style="@android:style/TextAppearance.Large"
+            android:layout_margin="10dp"
             android:text="Текст"
             android:id="@+id/bodyTextView"/>
 
-    <MultiAutoCompleteTextView
+    <EditText
             android:id="@+id/noteBody"
-            android:lines="5"
-            android:layout_weight="1"
             android:inputType="text"/>
 
     <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_margin="10dp"
+        style="@android:style/TextAppearance.Large"
         android:text="Теги"
         android:id="@+id/textView"/>
 

@@ -28,6 +28,14 @@ public class TagListActivity extends Activity {
             }
         });
 
+        Button backToNotes = (Button) findViewById(R.id.backToNotes);
+        backToNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TagListActivity.this.finish();
+            }
+        });
+
         mainPage = (ScrollView) findViewById(R.id.scrollView);
         HelperFactory.setHelper(getApplicationContext());
     }

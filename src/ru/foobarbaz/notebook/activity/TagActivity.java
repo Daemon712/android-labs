@@ -47,7 +47,7 @@ public class TagActivity extends Activity implements View.OnClickListener {
         }
         currentTag = HelperFactory.getHelper().getTagDao().queryForId(Integer.parseInt(tagId));
         tagName.setText(currentTag.getName());
-        notes.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, HelperFactory.getHelper().getNoteTagDao().getNotesForTag(currentTag)));
+        notes.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, HelperFactory.getHelper().getNoteTagDao().getNotesForTag(currentTag)));
     }
 
     @Override
