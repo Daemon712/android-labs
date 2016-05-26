@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context="ru.foobarbaz.paint.PaintActivity">
+
+    <TableRow>
+        <Button android:text="Clean" android:layout_weight="1"
+                android:id="@+id/cleanButton"/>
+        <Button android:text="Delete" android:layout_weight="1"
+                android:id="@+id/removeLastButton"/>
+        <Spinner android:id="@+id/widthPicker" android:layout_weight="1"/>
+        <Spinner android:id="@+id/colorSpinner" android:layout_weight="1"/>
+    </TableRow>
+
+    <ru.foobarbaz.paint.DrawingView android:id="@+id/drawingView" android:layout_weight="1"/>
+
+    <TableRow>
+        <Button android:text="Drag" android:layout_weight="1"
+                android:id="@+id/dragButton"/>
+        <Button android:text="Line" android:layout_weight="1"
+                android:id="@+id/lineButton"/>
+        <Button android:text="Rectangle" android:layout_weight="1"
+                android:id="@+id/rectangleButton"/>
+        <Button android:text="Circle" android:layout_weight="1"
+                android:id="@+id/circleButton"/>
+    </TableRow>
+</TableLayout>

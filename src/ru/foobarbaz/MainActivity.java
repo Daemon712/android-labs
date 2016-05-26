@@ -7,6 +7,7 @@ import android.view.View;
 import ru.foobarbaz.calculator.CalculatorActivity;
 import ru.foobarbaz.converter.ConverterActivity;
 import ru.foobarbaz.notebook.activity.NoteListActivity;
+import ru.foobarbaz.paint.PaintActivity;
 
 public class MainActivity extends Activity{
 
@@ -28,6 +29,11 @@ public class MainActivity extends Activity{
 
     public void openNoteBook(View view) {
         Intent intent = new Intent(this, NoteListActivity.class);
+        startActivity(intent);
+    }
+
+    public void openPaint(View view) {
+        Intent intent = new Intent(this, PaintActivity.class);
         startActivity(intent);
     }
 }
